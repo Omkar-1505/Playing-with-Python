@@ -1,7 +1,7 @@
 #Array module
 
 import array as arr #(alias)
-# import sys
+import sys
 val=arr.array('i',[1,2,3,4,5])  #it besically is the type code just like C's data type specification
 print(val)
 

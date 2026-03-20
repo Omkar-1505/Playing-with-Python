@@ -25,3 +25,7 @@ stk = stack()
 stk.push(10)
 stk.push(20)
 print(stk.peek())
+print(stk.pop())
+
+
+#try for append yourself and print too

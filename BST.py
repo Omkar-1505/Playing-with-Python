@@ -35,7 +35,34 @@ def search(root,value):
         search(root.left,value)
     else:
         search(root.right,value)
-    
+
+def successor(root): #this is inorder successor we can go for predecessor also
+    root=root.right
+    while(root!=None and root.left!=None):
+        root = root.left
+    return root #current location
+
+def delete(root,value):
+    if (root==None):
+        return root
+    if(root.data>value):
+        root.left=delete(root.left,value)
+    elif(root.data<value):
+        root.right=delete(root.right,value)
+
+    else:#got the value
+        if(root.left == None):
+            return root.right
+        if(root.right == None):
+            return root.left
+#inorder successor = one step right then all left vice-versa for inorder predecessor
+#you must have the parent address
+#this inorder successor helps to convert the difficulty from deleting 2 childs to 1 or none        
+        else:
+            suc = successor(root)
+            root.data = suc.data
+            root.right=delete(root.right,suc.data)
+    return root
 
 
 root = Node(20)
@@ -53,3 +80,14 @@ inorder(root)
 print("\n")
 search(root,56)
 search(root,100)
+print("\n")
+delete(root,56)
+inorder(root)
+print("\n")
+delete(root,35)
+inorder(root)
+print("\n")
+delete(root,11)
+inorder(root)
+
+#for whole tree it is always O(nlogn)
